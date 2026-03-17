@@ -2,9 +2,9 @@
 
 ## État courant
 - Projet : Lia_Pulse
-- Statut : PAUSED_SPEC
-- Passe en cours : 7/8
-- Dernière mise à jour : 2026-03-17 16:42
+- Statut : DONE
+- Passe en cours : 8/8
+- Dernière mise à jour : 2026-03-17 18:16
 
 ## Statuts autorisés (verrouillés)
 - READY : prêt à lancer
@@ -31,14 +31,14 @@
 - PR de la passe en cours : Non
 - Lien PR (passe) : N/A
 - CI PR : NA
-- Fusion finale validée par utilisateur : Non
+- Fusion finale validée par utilisateur : Oui
 
 ## Priorité active (roadmap)
 - Règle : Must > Should > Could
-- Lot en cours : Phase 1 / Finalisation
-- Feature en cours : Validation finale V1 + check iPhone PWA
+- Lot en cours : Phase 1 / Clôture
+- Feature en cours : Clôture V1
 
 ## Dernière décision Orchestrator
-- Décision : Pause contrôlée avant clôture
-- Motif : Critère DoD #1 (installation PWA sur iPhone 13) non vérifiable automatiquement
-- Action suivante : Demander validation utilisateur sur iPhone puis clôturer
+- Décision : Validation iPhone reçue, clôture DONE
+- Motif : DoD complet validé (incluant installation PWA iPhone)
+- Action suivante : Synthèse finale + arrêt mécanisme temporaire anti-inertie

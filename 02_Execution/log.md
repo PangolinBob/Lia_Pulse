@@ -81,3 +81,12 @@ Next step : demander confirmation iPhone, puis clôturer en DONE.
 Commit SHA : 561bf67 (implémentation) / eacefe9 (merge main)
 Message commit : PASS-07: Validation scénarios critiques + pause check iPhone
 Lien PR : https://github.com/PangolinBob/Lia_Pulse/pull/7
+
+## Passe 08 — 2026-03-17 18:16
+Objectif : Clôturer V1 après validation manuelle iPhone.
+Résultat : Validation utilisateur reçue ("OK iPhone validé"). DoD complété, statut projet passé à DONE.
+Blocage : Aucun.
+Next step : envoyer synthèse finale + préparer watchdog post-projet.
+Commit SHA : [à remplir]
+Message commit : PASS-08: Clôture V1 après validation iPhone
+Lien PR : [à créer]

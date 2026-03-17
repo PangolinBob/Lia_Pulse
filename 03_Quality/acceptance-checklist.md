@@ -1,7 +1,7 @@
 # acceptance-checklist.md
 
 ## Critères d’acceptation (binaires)
-- [ ] L’app s’installe en mode PWA sur iPhone 13.
+- [x] L’app s’installe en mode PWA sur iPhone 13.
 - [x] L’accès PIN fonctionne avec option afficher/masquer.
 - [x] La Vue Rapide affiche 4 blocs lisibles.
 - [x] Le pourcentage d’avancement est visible avec mini barre.
