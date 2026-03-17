@@ -5,12 +5,12 @@
 - [x] L’accès PIN fonctionne avec option afficher/masquer.
 - [x] La Vue Rapide affiche 4 blocs lisibles.
 - [x] Le pourcentage d’avancement est visible avec mini barre.
-- [ ] Le bouton refresh manuel fonctionne.
-- [ ] L’auto-refresh discret toutes les 2 min fonctionne.
+- [x] Le bouton refresh manuel fonctionne.
+- [x] L’auto-refresh discret toutes les 2 min fonctionne.
 - [ ] L’onglet Détails affiche 5 dernières passes.
-- [ ] En cas de blocage dur, bannière persistante visible.
-- [ ] Le bouton “Voir le blocage” ouvre une fiche de décision claire.
-- [ ] La fiche de décision contient Options A/B + pour/contre + préconisation.
+- [x] En cas de blocage dur, bannière persistante visible.
+- [x] Le bouton “Voir le blocage” ouvre une fiche de décision claire.
+- [x] La fiche de décision contient Options A/B + pour/contre + préconisation.
 - [ ] Le mode clair/sombre manuel fonctionne depuis Réglages.
 - [x] Le texte “on en est où ?” est affichable en format court standard.
 
