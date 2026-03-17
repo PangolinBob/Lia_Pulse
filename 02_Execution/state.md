@@ -2,9 +2,9 @@
 
 ## État courant
 - Projet : Lia_Pulse
-- Statut : PAUSED_ESCALADE
-- Passe en cours : 0/8
-- Dernière mise à jour : 2026-03-17 14:22
+- Statut : RUNNING
+- Passe en cours : 1/8
+- Dernière mise à jour : 2026-03-17 14:25
 
 ## Statuts autorisés (verrouillés)
 - READY : prêt à lancer
@@ -25,20 +25,20 @@
 ## Suivi Git
 - Plateforme : GitHub
 - Visibilité repo : Privé (par défaut)
-- Repo URL : [BLOQUÉ - repo dédié non créé]
-- Branche active : [BLOQUÉ - work/Lia_Pulse absent]
-- Dernier commit (SHA court) : [BLOQUÉ]
-- PR de la passe en cours : Non
-- Lien PR (passe) : [BLOQUÉ]
-- CI PR : NA
+- Repo URL : https://github.com/PangolinBob/Lia_Pulse.git
+- Branche active : work/Lia_Pulse
+- Dernier commit (SHA court) : 0836869
+- PR de la passe en cours : Oui
+- Lien PR (passe) : https://github.com/PangolinBob/Lia_Pulse/pull/1
+- CI PR : En cours
 - Fusion finale validée par utilisateur : Non
 
 ## Priorité active (roadmap)
 - Règle : Must > Should > Could
-- Lot en cours : Pré-lancement
-- Feature en cours : Check pré-lancement
+- Lot en cours : Phase 1 / Bloc 1
+- Feature en cours : Accès PIN + base UI mobile
 
 ## Dernière décision Orchestrator
-- Décision : Pause avant passe 1
-- Motif : Pré-lancement incomplet (GitHub/repo/branche work dédiés manquants)
-- Action suivante : Validation utilisateur pour création repo privé GitHub + initialisation
+- Décision : Passe 01 exécutée, en attente CI PR
+- Motif : Implémentation bloc 1 terminée + PR ouverte
+- Action suivante : Attendre CI verte puis proposer merge + lancement Passe 02
