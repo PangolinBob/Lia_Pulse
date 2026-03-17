@@ -3,8 +3,8 @@
 ## État courant
 - Projet : Lia_Pulse
 - Statut : RUNNING
-- Passe en cours : 1/8
-- Dernière mise à jour : 2026-03-17 14:25
+- Passe en cours : 2/8
+- Dernière mise à jour : 2026-03-17 15:10
 
 ## Statuts autorisés (verrouillés)
 - READY : prêt à lancer
@@ -27,18 +27,18 @@
 - Visibilité repo : Privé (par défaut)
 - Repo URL : https://github.com/PangolinBob/Lia_Pulse.git
 - Branche active : work/Lia_Pulse
-- Dernier commit (SHA court) : 0836869
+- Dernier commit (SHA court) : a1d7904
 - PR de la passe en cours : Oui
-- Lien PR (passe) : https://github.com/PangolinBob/Lia_Pulse/pull/1
+- Lien PR (passe) : https://github.com/PangolinBob/Lia_Pulse/pull/2
 - CI PR : En cours
 - Fusion finale validée par utilisateur : Non
 
 ## Priorité active (roadmap)
 - Règle : Must > Should > Could
-- Lot en cours : Phase 1 / Bloc 1
-- Feature en cours : Accès PIN + base UI mobile
+- Lot en cours : Phase 1 / Bloc 2
+- Feature en cours : Vue Rapide (4 blocs + avancement visuel)
 
 ## Dernière décision Orchestrator
-- Décision : Passe 01 exécutée, en attente CI PR
-- Motif : Implémentation bloc 1 terminée + PR ouverte
-- Action suivante : Attendre CI verte puis proposer merge + lancement Passe 02
+- Décision : Reprise validée, PASS-01 mergée, PASS-02 exécutée
+- Motif : Go utilisateur reçu + correction process anti-attente silencieuse appliquée
+- Action suivante : Attendre CI PR #2, notifier Go/No-Go immédiat, puis merge + Passe 03
