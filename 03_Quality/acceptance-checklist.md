@@ -7,7 +7,7 @@
 - [x] Le pourcentage d’avancement est visible avec mini barre.
 - [x] Le bouton refresh manuel fonctionne.
 - [x] L’auto-refresh discret toutes les 2 min fonctionne.
-- [ ] L’onglet Détails affiche 5 dernières passes.
+- [x] L’onglet Détails affiche 5 dernières passes.
 - [x] En cas de blocage dur, bannière persistante visible.
 - [x] Le bouton “Voir le blocage” ouvre une fiche de décision claire.
 - [x] La fiche de décision contient Options A/B + pour/contre + préconisation.
