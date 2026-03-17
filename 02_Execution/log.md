@@ -75,9 +75,9 @@ Lien PR : https://github.com/PangolinBob/Lia_Pulse/pull/6
 
 ## Passe 07 — 2026-03-17 16:40
 Objectif : Valider les 3 scénarios critiques finaux et préparer clôture V1.
-Résultat : Scénarios critiques validés via tests de structure + lint + build OK.
+Résultat : Scénarios critiques validés via tests de structure + lint + build OK. PR ouverte puis mergée (CI verte).
 Blocage : Vérification DoD #1 (installation PWA réelle sur iPhone 13) nécessite validation manuelle utilisateur.
 Next step : demander confirmation iPhone, puis clôturer en DONE.
-Commit SHA : [à remplir]
+Commit SHA : 561bf67 (implémentation) / eacefe9 (merge main)
 Message commit : PASS-07: Validation scénarios critiques + pause check iPhone
-Lien PR : [à créer]
+Lien PR : https://github.com/PangolinBob/Lia_Pulse/pull/7

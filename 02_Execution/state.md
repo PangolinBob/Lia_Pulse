@@ -4,7 +4,7 @@
 - Projet : Lia_Pulse
 - Statut : PAUSED_SPEC
 - Passe en cours : 7/8
-- Dernière mise à jour : 2026-03-17 16:40
+- Dernière mise à jour : 2026-03-17 16:42
 
 ## Statuts autorisés (verrouillés)
 - READY : prêt à lancer
@@ -27,10 +27,10 @@
 - Visibilité repo : Privé (par défaut)
 - Repo URL : https://github.com/PangolinBob/Lia_Pulse.git
 - Branche active : work/Lia_Pulse
-- Dernier commit (SHA court) : ce545a8
-- PR de la passe en cours : Oui
-- Lien PR (passe) : [à créer PASS-07]
-- CI PR : À lancer
+- Dernier commit (SHA court) : eacefe9
+- PR de la passe en cours : Non
+- Lien PR (passe) : N/A
+- CI PR : NA
 - Fusion finale validée par utilisateur : Non
 
 ## Priorité active (roadmap)
