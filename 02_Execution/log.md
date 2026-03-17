@@ -48,9 +48,18 @@ Lien PR : https://github.com/PangolinBob/Lia_Pulse/pull/3
 
 ## Passe 04 — 2026-03-17 16:24
 Objectif : Livrer Bloc 4 (bannière blocage persistante + fiche décision).
-Résultat : Implémenté avec succès (bannière persistante, bouton “Voir le blocage”, fiche Option A/B pour-contre-préconisation). Lint/test/build locaux OK. PR ouverte.
-Blocage : Aucun blocage produit. CI GitHub en cours sur PR #4.
-Next step : CI verte -> merge auto -> lancer Passe 05 (onglet Détails + historique 5 passes).
-Commit SHA : dc5f139
+Résultat : Implémenté avec succès (bannière persistante, bouton “Voir le blocage”, fiche Option A/B pour-contre-préconisation). Lint/test/build locaux OK. PR ouverte puis mergée (CI verte).
+Blocage : Aucun.
+Next step : Passe 05 (onglet Détails + historique 5 passes).
+Commit SHA : dc5f139 (implémentation) / fe51ff2 (merge main)
 Message commit : PASS-04: Bannière blocage persistante + fiche décision
 Lien PR : https://github.com/PangolinBob/Lia_Pulse/pull/4
+
+## Passe 05 — 2026-03-17 16:27
+Objectif : Livrer Bloc 5 (onglet Détails + historique 5 passes).
+Résultat : Implémenté avec succès (2 onglets, historique 5 passes, navigation mobile). Lint/test/build locaux OK. PR ouverte.
+Blocage : Aucun blocage produit. CI GitHub en cours sur PR #5.
+Next step : CI verte -> merge auto -> lancer Passe 06 (thème clair/sombre + finition iPhone).
+Commit SHA : 8327ac0
+Message commit : PASS-05: Onglet Détails + historique 5 passes
+Lien PR : https://github.com/PangolinBob/Lia_Pulse/pull/5

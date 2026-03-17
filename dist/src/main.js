@@ -5,10 +5,10 @@ const REFRESH_MS = 120000;
 let refreshTimer = null;
 
 const model = {
-  progressPct: 66,
-  globalState: 'En cours — passe 4 active',
-  nextStep: 'Finaliser blocage persistant + fiche décision.',
-  alerts: 'Blocage dur détecté : validation UX requise.',
+  progressPct: 83,
+  globalState: 'En cours — passe 5 active',
+  nextStep: 'Finaliser l’onglet Détails.',
+  alerts: 'Aucune alerte critique.',
   blockingIssue: {
     active: true,
     title: 'Blocage dur : rendu bannière iPhone à valider',
@@ -26,25 +26,37 @@ const model = {
       recommendation: 'À choisir si priorité absolue à l’esthétique.'
     }
   },
+  history: [
+    { pass: 'PASS-05', status: 'En cours', note: 'Onglet Détails + historique' },
+    { pass: 'PASS-04', status: 'OK', note: 'Bannière blocage + fiche décision' },
+    { pass: 'PASS-03', status: 'OK', note: 'Refresh manuel + auto-refresh' },
+    { pass: 'PASS-02', status: 'OK', note: 'Vue Rapide + avancement' },
+    { pass: 'PASS-01', status: 'OK', note: 'PIN + base UI' }
+  ],
   shortStatus: [
-    'On en est à peu près à 66 % du développement.',
+    'On en est à peu près à 83 % du développement.',
     'Pas de problème que l’on ne puisse gérer.',
-    'Prochaine étape : onglet Détails + historique 5 passes.'
+    'Prochaine étape : finalisation thème + polish iPhone.'
   ]
 };
 
-const form = document.querySelector('#pin-form');
-const pinInput = document.querySelector('#pin-input');
-const toggle = document.querySelector('#toggle-pin');
-const error = document.querySelector('#pin-error');
-const gate = document.querySelector('#gate');
-const dashboard = document.querySelector('#dashboard');
-const refreshBtn = document.querySelector('#refresh-btn');
-const freshness = document.querySelector('#freshness');
-const blockBanner = document.querySelector('#block-banner');
-const blockBtn = document.querySelector('#block-open');
-const blockCard = document.querySelector('#block-card');
-const blockClose = document.querySelector('#block-close');
+const $ = (s) => document.querySelector(s);
+const form = $('#pin-form');
+const pinInput = $('#pin-input');
+const toggle = $('#toggle-pin');
+const error = $('#pin-error');
+const gate = $('#gate');
+const dashboard = $('#dashboard');
+const refreshBtn = $('#refresh-btn');
+const freshness = $('#freshness');
+const blockBanner = $('#block-banner');
+const blockBtn = $('#block-open');
+const blockCard = $('#block-card');
+const blockClose = $('#block-close');
+const tabQuick = $('#tab-quick');
+const tabDetails = $('#tab-details');
+const panelQuick = $('#panel-quick');
+const panelDetails = $('#panel-details');
 
 function stampFreshness(mode = 'auto') {
   const when = new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
@@ -62,28 +74,39 @@ function renderBlockingIssue(issue) {
     return;
   }
   blockBanner.hidden = false;
-  document.querySelector('#block-banner-text').textContent = issue.title;
-  document.querySelector('#block-title').textContent = issue.title;
-  document.querySelector('#block-summary').textContent = issue.summary;
-  document.querySelector('#optA-label').textContent = issue.optionA.label;
-  document.querySelector('#optA-pros').textContent = `Pour : ${issue.optionA.pros}`;
-  document.querySelector('#optA-cons').textContent = `Contre : ${issue.optionA.cons}`;
-  document.querySelector('#optA-rec').textContent = `Préconisation : ${issue.optionA.recommendation}`;
-  document.querySelector('#optB-label').textContent = issue.optionB.label;
-  document.querySelector('#optB-pros').textContent = `Pour : ${issue.optionB.pros}`;
-  document.querySelector('#optB-cons').textContent = `Contre : ${issue.optionB.cons}`;
-  document.querySelector('#optB-rec').textContent = `Préconisation : ${issue.optionB.recommendation}`;
+  $('#block-banner-text').textContent = issue.title;
+  $('#block-title').textContent = issue.title;
+  $('#block-summary').textContent = issue.summary;
+  $('#optA-label').textContent = issue.optionA.label;
+  $('#optA-pros').textContent = `Pour : ${issue.optionA.pros}`;
+  $('#optA-cons').textContent = `Contre : ${issue.optionA.cons}`;
+  $('#optA-rec').textContent = `Préconisation : ${issue.optionA.recommendation}`;
+  $('#optB-label').textContent = issue.optionB.label;
+  $('#optB-pros').textContent = `Pour : ${issue.optionB.pros}`;
+  $('#optB-cons').textContent = `Contre : ${issue.optionB.cons}`;
+  $('#optB-rec').textContent = `Préconisation : ${issue.optionB.recommendation}`;
+}
+
+function renderHistory(items) {
+  const list = $('#history-list');
+  list.innerHTML = '';
+  for (const item of items.slice(0, 5)) {
+    const li = document.createElement('li');
+    li.className = 'history-item';
+    li.innerHTML = `<strong>${item.pass}</strong> — ${item.status}<br><span class="small">${item.note}</span>`;
+    list.appendChild(li);
+  }
 }
 
 function renderQuickView(data) {
   const pct = Math.max(0, Math.min(100, Number(data.progressPct || 0)));
-  document.querySelector('#kpi-progress-value').textContent = `${pct}%`;
-  document.querySelector('#kpi-progress-bar').style.width = `${pct}%`;
-  document.querySelector('#kpi-state').textContent = data.globalState;
-  document.querySelector('#kpi-next').textContent = data.nextStep;
-  document.querySelector('#kpi-alerts').textContent = data.alerts;
+  $('#kpi-progress-value').textContent = `${pct}%`;
+  $('#kpi-progress-bar').style.width = `${pct}%`;
+  $('#kpi-state').textContent = data.globalState;
+  $('#kpi-next').textContent = data.nextStep;
+  $('#kpi-alerts').textContent = data.alerts;
 
-  const status = document.querySelector('#short-status');
+  const status = $('#short-status');
   status.innerHTML = '';
   for (const line of data.shortStatus) {
     const li = document.createElement('li');
@@ -92,6 +115,7 @@ function renderQuickView(data) {
   }
 
   renderBlockingIssue(data.blockingIssue);
+  renderHistory(data.history);
 }
 
 function refreshData(mode = 'manuel') {
@@ -105,11 +129,20 @@ function startAutoRefresh() {
   refreshTimer = setInterval(() => refreshData('auto'), REFRESH_MS);
 }
 
+function showTab(which = 'quick') {
+  const quick = which === 'quick';
+  panelQuick.hidden = !quick;
+  panelDetails.hidden = quick;
+  tabQuick.classList.toggle('active', quick);
+  tabDetails.classList.toggle('active', !quick);
+}
+
 function unlock() {
   gate.hidden = true;
   dashboard.hidden = false;
   refreshData('manuel');
   startAutoRefresh();
+  showTab('quick');
 }
 
 form?.addEventListener('submit', (e) => {
@@ -129,3 +162,5 @@ toggle?.addEventListener('change', () => {
 refreshBtn?.addEventListener('click', () => refreshData('manuel'));
 blockBtn?.addEventListener('click', () => { blockCard.hidden = false; blockCard.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
 blockClose?.addEventListener('click', () => { blockCard.hidden = true; });
+tabQuick?.addEventListener('click', () => showTab('quick'));
+tabDetails?.addEventListener('click', () => showTab('details'));

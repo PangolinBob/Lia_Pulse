@@ -29,6 +29,10 @@
       .decision{border:1px solid #334155;border-radius:12px;padding:10px;margin-top:10px;background:#0b1324;}
       .decision h3{margin:0 0 8px;font-size:1rem;color:#fca5a5;}
       .decision h4{margin:8px 0 4px;color:#93c5fd;font-size:.9rem;}
+      .tabs{display:flex;gap:8px;margin-bottom:8px;}
+      .tabs button{flex:1;margin:0;background:#1e293b;}
+      .tabs button.active{background:#2563eb;}
+      .history-item{border:1px solid #233046;border-radius:10px;padding:8px;margin:6px 0;list-style:none;background:#0b1324;}
       </style>
   </head>
   <body>
@@ -49,7 +53,12 @@
       </section>
 
       <section id="dashboard" class="card" hidden>
-        <h1>Vue Rapide</h1>
+        <div id="tabs" class="tabs">
+          <button id="tab-quick" type="button" class="active">Vue Rapide</button>
+          <button id="tab-details" type="button">Détails</button>
+        </div>
+        <h1>Lia Pulse</h1>
+        <section id="panel-quick">
         <section id="block-banner" class="banner" hidden>
           <strong id="block-banner-text">Blocage dur détecté</strong>
           <button id="block-open" type="button">Voir le blocage</button>
@@ -89,6 +98,13 @@
           <p id="optB-cons" class="small"></p>
           <p id="optB-rec" class="small"></p>
           <button id="block-close" type="button">Fermer</button>
+        </section>
+        </section>
+
+        <section id="panel-details" hidden>
+          <h2 style="margin-top:10px;color:#93c5fd;font-size:.95rem">Historique (5 dernières passes)</h2>
+          <ul id="history-list" style="padding:0;margin:0"></ul>
+          <p class="small">Si données incomplètes, un message explicite s’affiche ici.</p>
         </section>
       </section>
     </main>
