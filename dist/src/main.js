@@ -2,41 +2,32 @@ import { isPinValid } from './pin.js';
 
 const APP_PIN = '2603';
 const REFRESH_MS = 120000;
+const THEME_KEY = 'lia-pulse-theme';
 let refreshTimer = null;
 
 const model = {
-  progressPct: 83,
-  globalState: 'En cours — passe 5 active',
-  nextStep: 'Finaliser l’onglet Détails.',
+  progressPct: 100,
+  globalState: 'En cours — passe 6 active',
+  nextStep: 'Validation finale V1 puis clôture.',
   alerts: 'Aucune alerte critique.',
   blockingIssue: {
-    active: true,
-    title: 'Blocage dur : rendu bannière iPhone à valider',
-    summary: 'Le rendu est fonctionnel mais la validation visuelle finale est en attente.',
-    optionA: {
-      label: 'Option A — garder le style actuel',
-      pros: 'Rapide, simple, cohérent avec la base actuelle.',
-      cons: 'Moins premium que l’objectif final chat.html-like.',
-      recommendation: 'Recommandée pour garder le rythme de livraison.'
-    },
-    optionB: {
-      label: 'Option B — retravailler le style maintenant',
-      pros: 'Finition visuelle plus proche de la cible.',
-      cons: 'Prend plus de temps sur la V1.',
-      recommendation: 'À choisir si priorité absolue à l’esthétique.'
-    }
+    active: false,
+    title: 'Blocage dur détecté',
+    summary: '',
+    optionA: { label: 'Option A', pros: '', cons: '', recommendation: '' },
+    optionB: { label: 'Option B', pros: '', cons: '', recommendation: '' }
   },
   history: [
-    { pass: 'PASS-05', status: 'En cours', note: 'Onglet Détails + historique' },
+    { pass: 'PASS-06', status: 'En cours', note: 'Thème clair/sombre + réglages' },
+    { pass: 'PASS-05', status: 'OK', note: 'Onglet Détails + historique' },
     { pass: 'PASS-04', status: 'OK', note: 'Bannière blocage + fiche décision' },
     { pass: 'PASS-03', status: 'OK', note: 'Refresh manuel + auto-refresh' },
-    { pass: 'PASS-02', status: 'OK', note: 'Vue Rapide + avancement' },
-    { pass: 'PASS-01', status: 'OK', note: 'PIN + base UI' }
+    { pass: 'PASS-02', status: 'OK', note: 'Vue Rapide + avancement' }
   ],
   shortStatus: [
-    'On en est à peu près à 83 % du développement.',
+    'On en est à peu près à 100 % du développement.',
     'Pas de problème que l’on ne puisse gérer.',
-    'Prochaine étape : finalisation thème + polish iPhone.'
+    'Prochaine étape : validation finale et clôture.'
   ]
 };
 
@@ -55,8 +46,25 @@ const blockCard = $('#block-card');
 const blockClose = $('#block-close');
 const tabQuick = $('#tab-quick');
 const tabDetails = $('#tab-details');
+const tabSettings = $('#tab-settings');
 const panelQuick = $('#panel-quick');
 const panelDetails = $('#panel-details');
+const panelSettings = $('#panel-settings');
+const themeSelect = $('#theme-select');
+
+function applyTheme(theme) {
+  const chosen = theme === 'light' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', chosen);
+  localStorage.setItem(THEME_KEY, chosen);
+  const themeMeta = document.querySelector('meta[name="theme-color"]');
+  if (themeMeta) themeMeta.setAttribute('content', chosen === 'light' ? '#f8fafc' : '#0f172a');
+}
+
+function initTheme() {
+  const saved = localStorage.getItem(THEME_KEY) || 'dark';
+  applyTheme(saved);
+  if (themeSelect) themeSelect.value = saved;
+}
 
 function stampFreshness(mode = 'auto') {
   const when = new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
@@ -130,11 +138,12 @@ function startAutoRefresh() {
 }
 
 function showTab(which = 'quick') {
-  const quick = which === 'quick';
-  panelQuick.hidden = !quick;
-  panelDetails.hidden = quick;
-  tabQuick.classList.toggle('active', quick);
-  tabDetails.classList.toggle('active', !quick);
+  panelQuick.hidden = which !== 'quick';
+  panelDetails.hidden = which !== 'details';
+  panelSettings.hidden = which !== 'settings';
+  tabQuick.classList.toggle('active', which === 'quick');
+  tabDetails.classList.toggle('active', which === 'details');
+  tabSettings.classList.toggle('active', which === 'settings');
 }
 
 function unlock() {
@@ -164,3 +173,7 @@ blockBtn?.addEventListener('click', () => { blockCard.hidden = false; blockCard.
 blockClose?.addEventListener('click', () => { blockCard.hidden = true; });
 tabQuick?.addEventListener('click', () => showTab('quick'));
 tabDetails?.addEventListener('click', () => showTab('details'));
+tabSettings?.addEventListener('click', () => showTab('settings'));
+themeSelect?.addEventListener('change', (e) => applyTheme(e.target.value));
+
+initTheme();
