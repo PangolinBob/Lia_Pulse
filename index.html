@@ -7,33 +7,59 @@
     <link rel="manifest" href="manifest.webmanifest" />
     <title>Lia Pulse</title>
     <style>
-      :root { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
-      body { margin: 0; background: #0b1220; color: #e2e8f0; }
+      :root {
+        --bg: #0b1220;
+        --fg: #e2e8f0;
+        --card: #111827;
+        --border: #1f2937;
+        --input-bg: #020617;
+        --muted: #94a3b8;
+        --kpi-bg: #0f172a;
+        --kpi-border: #263244;
+        --tab-bg: #1e293b;
+        --primary: #2563eb;
+        --bar: #22c55e;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      }
+      :root[data-theme='light'] {
+        --bg: #f1f5f9;
+        --fg: #0f172a;
+        --card: #ffffff;
+        --border: #cbd5e1;
+        --input-bg: #ffffff;
+        --muted: #475569;
+        --kpi-bg: #f8fafc;
+        --kpi-border: #cbd5e1;
+        --tab-bg: #e2e8f0;
+        --primary: #2563eb;
+        --bar: #16a34a;
+      }
+      body { margin: 0; background: var(--bg); color: var(--fg); }
       .wrap { min-height: 100vh; display: grid; place-items: center; padding: 16px; }
-      .card { width: 100%; max-width: 420px; background: #111827; border: 1px solid #1f2937; border-radius: 16px; padding: 20px; }
+      .card { width: 100%; max-width: 420px; background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 20px; }
       h1 { margin: 0 0 12px; font-size: 1.2rem; }
       label { display: block; font-size: 0.9rem; margin-bottom: 8px; }
-      input[type='password'], input[type='text'] { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #334155; background: #020617; color: #e2e8f0; }
-      button { margin-top: 12px; width: 100%; padding: 12px; border: 0; border-radius: 10px; background: #2563eb; color: white; font-weight: 600; }
-      .small { font-size: 0.85rem; color: #94a3b8; }
-      .error { color: #fda4af; min-height: 1.2rem; }
+      input[type='password'], input[type='text'], select { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid var(--border); background: var(--input-bg); color: var(--fg); }
+      button { margin-top: 12px; width: 100%; padding: 12px; border: 0; border-radius: 10px; background: var(--primary); color: white; font-weight: 600; }
+      .small { font-size: 0.85rem; color: var(--muted); }
+      .error { color: #f43f5e; min-height: 1.2rem; }
       .row { display: flex; align-items: center; gap: 8px; margin-top: 8px; }
       .grid { display: grid; gap: 10px; }
-      .kpi { border: 1px solid #263244; border-radius: 12px; padding: 10px; background: #0f172a; }
-      .kpi h2 { margin: 0 0 6px; font-size: .85rem; color: #93c5fd; }
+      .kpi { border: 1px solid var(--kpi-border); border-radius: 12px; padding: 10px; background: var(--kpi-bg); }
+      .kpi h2 { margin: 0 0 6px; font-size: .85rem; color: #60a5fa; }
       .value { font-size: 1rem; font-weight: 600; }
       .bar { margin-top: 8px; height: 8px; border-radius: 999px; background: #1e293b; overflow: hidden; }
-      .bar > i { display: block; height: 100%; background: #22c55e; width: 0; }
+      .bar > i { display: block; height: 100%; background: var(--bar); width: 0; }
       ul { margin: 8px 0 0 18px; padding: 0; }
-    .banner{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px;border-radius:10px;border:1px solid #7f1d1d;background:#3f0d0d;color:#fecaca;margin:8px 0;}
-      .decision{border:1px solid #334155;border-radius:12px;padding:10px;margin-top:10px;background:#0b1324;}
+      .banner{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px;border-radius:10px;border:1px solid #7f1d1d;background:#3f0d0d;color:#fecaca;margin:8px 0;}
+      .decision{border:1px solid var(--border);border-radius:12px;padding:10px;margin-top:10px;background:var(--kpi-bg);}
       .decision h3{margin:0 0 8px;font-size:1rem;color:#fca5a5;}
-      .decision h4{margin:8px 0 4px;color:#93c5fd;font-size:.9rem;}
+      .decision h4{margin:8px 0 4px;color:#60a5fa;font-size:.9rem;}
       .tabs{display:flex;gap:8px;margin-bottom:8px;}
-      .tabs button{flex:1;margin:0;background:#1e293b;}
-      .tabs button.active{background:#2563eb;}
-      .history-item{border:1px solid #233046;border-radius:10px;padding:8px;margin:6px 0;list-style:none;background:#0b1324;}
-      </style>
+      .tabs button{flex:1;margin:0;background:var(--tab-bg);}
+      .tabs button.active{background:var(--primary);}
+      .history-item{border:1px solid var(--kpi-border);border-radius:10px;padding:8px;margin:6px 0;list-style:none;background:var(--kpi-bg);}      
+    </style>
   </head>
   <body>
     <main class="wrap">
@@ -56,55 +82,66 @@
         <div id="tabs" class="tabs">
           <button id="tab-quick" type="button" class="active">Vue Rapide</button>
           <button id="tab-details" type="button">Détails</button>
+          <button id="tab-settings" type="button">Réglages</button>
         </div>
         <h1>Lia Pulse</h1>
         <section id="panel-quick">
-        <section id="block-banner" class="banner" hidden>
-          <strong id="block-banner-text">Blocage dur détecté</strong>
-          <button id="block-open" type="button">Voir le blocage</button>
-        </section>
-        <button id="refresh-btn" type="button" style="margin:8px 0 4px">Refresh</button>
-        <p id="freshness" class="small">Dernière mise à jour: —</p>
-        <div class="grid">
-          <article class="kpi">
-            <h2>Avancement</h2>
-            <div id="kpi-progress-value" class="value">0%</div>
-            <div class="bar"><i id="kpi-progress-bar"></i></div>
-          </article>
-          <article class="kpi">
-            <h2>État global</h2>
-            <div id="kpi-state" class="value">—</div>
-          </article>
-          <article class="kpi">
-            <h2>Prochaine étape</h2>
-            <div id="kpi-next" class="value">—</div>
-          </article>
-          <article class="kpi">
-            <h2>Alertes</h2>
-            <div id="kpi-alerts" class="value">—</div>
-          </article>
-        </div>
-        <h2 style="margin-top:12px;color:#93c5fd;font-size:.9rem">Format “on en est où ?”</h2>
-        <ul id="short-status"></ul>
-        <section id="block-card" class="decision" hidden>
-          <h3 id="block-title">Blocage</h3>
-          <p id="block-summary" class="small"></p>
-          <h4 id="optA-label">Option A</h4>
-          <p id="optA-pros" class="small"></p>
-          <p id="optA-cons" class="small"></p>
-          <p id="optA-rec" class="small"></p>
-          <h4 id="optB-label">Option B</h4>
-          <p id="optB-pros" class="small"></p>
-          <p id="optB-cons" class="small"></p>
-          <p id="optB-rec" class="small"></p>
-          <button id="block-close" type="button">Fermer</button>
-        </section>
+          <section id="block-banner" class="banner" hidden>
+            <strong id="block-banner-text">Blocage dur détecté</strong>
+            <button id="block-open" type="button">Voir le blocage</button>
+          </section>
+          <button id="refresh-btn" type="button" style="margin:8px 0 4px">Refresh</button>
+          <p id="freshness" class="small">Dernière mise à jour: —</p>
+          <div class="grid">
+            <article class="kpi">
+              <h2>Avancement</h2>
+              <div id="kpi-progress-value" class="value">0%</div>
+              <div class="bar"><i id="kpi-progress-bar"></i></div>
+            </article>
+            <article class="kpi">
+              <h2>État global</h2>
+              <div id="kpi-state" class="value">—</div>
+            </article>
+            <article class="kpi">
+              <h2>Prochaine étape</h2>
+              <div id="kpi-next" class="value">—</div>
+            </article>
+            <article class="kpi">
+              <h2>Alertes</h2>
+              <div id="kpi-alerts" class="value">—</div>
+            </article>
+          </div>
+          <h2 style="margin-top:12px;color:#60a5fa;font-size:.9rem">Format “on en est où ?”</h2>
+          <ul id="short-status"></ul>
+          <section id="block-card" class="decision" hidden>
+            <h3 id="block-title">Blocage</h3>
+            <p id="block-summary" class="small"></p>
+            <h4 id="optA-label">Option A</h4>
+            <p id="optA-pros" class="small"></p>
+            <p id="optA-cons" class="small"></p>
+            <p id="optA-rec" class="small"></p>
+            <h4 id="optB-label">Option B</h4>
+            <p id="optB-pros" class="small"></p>
+            <p id="optB-cons" class="small"></p>
+            <p id="optB-rec" class="small"></p>
+            <button id="block-close" type="button">Fermer</button>
+          </section>
         </section>
 
         <section id="panel-details" hidden>
-          <h2 style="margin-top:10px;color:#93c5fd;font-size:.95rem">Historique (5 dernières passes)</h2>
+          <h2 style="margin-top:10px;color:#60a5fa;font-size:.95rem">Historique (5 dernières passes)</h2>
           <ul id="history-list" style="padding:0;margin:0"></ul>
           <p class="small">Si données incomplètes, un message explicite s’affiche ici.</p>
+        </section>
+
+        <section id="panel-settings" hidden>
+          <h2 style="margin-top:10px;color:#60a5fa;font-size:.95rem">Réglages</h2>
+          <label for="theme-select">Thème</label>
+          <select id="theme-select">
+            <option value="dark">Sombre</option>
+            <option value="light">Clair</option>
+          </select>
+          <p class="small">Le thème est sauvegardé sur cet appareil.</p>
         </section>
       </section>
     </main>
