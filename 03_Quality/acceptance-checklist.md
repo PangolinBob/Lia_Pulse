@@ -2,7 +2,7 @@
 
 ## Critères d’acceptation (binaires)
 - [ ] L’app s’installe en mode PWA sur iPhone 13.
-- [ ] L’accès PIN fonctionne avec option afficher/masquer.
+- [x] L’accès PIN fonctionne avec option afficher/masquer.
 - [ ] La Vue Rapide affiche 4 blocs lisibles.
 - [ ] Le pourcentage d’avancement est visible avec mini barre.
 - [ ] Le bouton refresh manuel fonctionne.
@@ -15,7 +15,7 @@
 - [ ] Le texte “on en est où ?” est affichable en format court standard.
 
 ## Validation socle léger
-- [ ] Build/compilation OK (si applicable)
-- [ ] Lint/qualité statique OK (si applicable)
-- [ ] Tests unitaires essentiels OK
+- [x] Build/compilation OK (si applicable)
+- [x] Lint/qualité statique OK (si applicable)
+- [x] Tests unitaires essentiels OK
 - [ ] 3 scénarios critiques OK
