@@ -18,4 +18,4 @@
 - [x] Build/compilation OK (si applicable)
 - [x] Lint/qualité statique OK (si applicable)
 - [x] Tests unitaires essentiels OK
-- [ ] 3 scénarios critiques OK
+- [x] 3 scénarios critiques OK

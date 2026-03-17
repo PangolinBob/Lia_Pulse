@@ -72,3 +72,12 @@ Next step : Validation finale V1 (scénarios critiques) puis clôture.
 Commit SHA : 5ce1fe2 (implémentation) / 8c10364 (merge main)
 Message commit : PASS-06: Thème clair/sombre manuel via Réglages
 Lien PR : https://github.com/PangolinBob/Lia_Pulse/pull/6
+
+## Passe 07 — 2026-03-17 16:40
+Objectif : Valider les 3 scénarios critiques finaux et préparer clôture V1.
+Résultat : Scénarios critiques validés via tests de structure + lint + build OK.
+Blocage : Vérification DoD #1 (installation PWA réelle sur iPhone 13) nécessite validation manuelle utilisateur.
+Next step : demander confirmation iPhone, puis clôturer en DONE.
+Commit SHA : [à remplir]
+Message commit : PASS-07: Validation scénarios critiques + pause check iPhone
+Lien PR : [à créer]
