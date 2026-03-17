@@ -57,9 +57,27 @@ Lien PR : https://github.com/PangolinBob/Lia_Pulse/pull/4
 
 ## Passe 05 — 2026-03-17 16:27
 Objectif : Livrer Bloc 5 (onglet Détails + historique 5 passes).
-Résultat : Implémenté avec succès (2 onglets, historique 5 passes, navigation mobile). Lint/test/build locaux OK. PR ouverte.
-Blocage : Aucun blocage produit. CI GitHub en cours sur PR #5.
-Next step : CI verte -> merge auto -> lancer Passe 06 (thème clair/sombre + finition iPhone).
-Commit SHA : 8327ac0
+Résultat : Implémenté avec succès (2 onglets, historique 5 passes, navigation mobile). Lint/test/build locaux OK. PR ouverte puis mergée (CI verte).
+Blocage : Aucun.
+Next step : Passe 06 (thème clair/sombre + finition iPhone).
+Commit SHA : 8327ac0 (implémentation) / 6c0bb92 (merge main)
 Message commit : PASS-05: Onglet Détails + historique 5 passes
 Lien PR : https://github.com/PangolinBob/Lia_Pulse/pull/5
+
+## Passe 06 — 2026-03-17 16:32
+Objectif : Livrer Bloc 6 (thème clair/sombre manuel via Réglages).
+Résultat : Implémenté avec succès (onglet Réglages, switch thème, persistance locale). Lint/test/build locaux OK. PR ouverte puis mergée (CI verte).
+Blocage : Aucun.
+Next step : Validation finale V1 (scénarios critiques) puis clôture.
+Commit SHA : 5ce1fe2 (implémentation) / 8c10364 (merge main)
+Message commit : PASS-06: Thème clair/sombre manuel via Réglages
+Lien PR : https://github.com/PangolinBob/Lia_Pulse/pull/6
+
+## Passe 07 — 2026-03-17 16:40
+Objectif : Valider les 3 scénarios critiques finaux et préparer clôture V1.
+Résultat : Scénarios critiques validés via tests de structure + lint + build OK.
+Blocage : Vérification DoD #1 (installation PWA réelle sur iPhone 13) nécessite validation manuelle utilisateur.
+Next step : demander confirmation iPhone, puis clôturer en DONE.
+Commit SHA : [à remplir]
+Message commit : PASS-07: Validation scénarios critiques + pause check iPhone
+Lien PR : [à créer]

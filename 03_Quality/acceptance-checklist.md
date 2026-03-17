@@ -11,11 +11,11 @@
 - [x] En cas de blocage dur, bannière persistante visible.
 - [x] Le bouton “Voir le blocage” ouvre une fiche de décision claire.
 - [x] La fiche de décision contient Options A/B + pour/contre + préconisation.
-- [ ] Le mode clair/sombre manuel fonctionne depuis Réglages.
+- [x] Le mode clair/sombre manuel fonctionne depuis Réglages.
 - [x] Le texte “on en est où ?” est affichable en format court standard.
 
 ## Validation socle léger
 - [x] Build/compilation OK (si applicable)
 - [x] Lint/qualité statique OK (si applicable)
 - [x] Tests unitaires essentiels OK
-- [ ] 3 scénarios critiques OK
+- [x] 3 scénarios critiques OK

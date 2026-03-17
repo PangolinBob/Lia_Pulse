@@ -2,9 +2,9 @@
 
 ## État courant
 - Projet : Lia_Pulse
-- Statut : RUNNING
-- Passe en cours : 5/8
-- Dernière mise à jour : 2026-03-17 16:27
+- Statut : PAUSED_SPEC
+- Passe en cours : 7/8
+- Dernière mise à jour : 2026-03-17 16:40
 
 ## Statuts autorisés (verrouillés)
 - READY : prêt à lancer
@@ -27,18 +27,18 @@
 - Visibilité repo : Privé (par défaut)
 - Repo URL : https://github.com/PangolinBob/Lia_Pulse.git
 - Branche active : work/Lia_Pulse
-- Dernier commit (SHA court) : 8327ac0
+- Dernier commit (SHA court) : ce545a8
 - PR de la passe en cours : Oui
-- Lien PR (passe) : https://github.com/PangolinBob/Lia_Pulse/pull/5
-- CI PR : En cours
+- Lien PR (passe) : [à créer PASS-07]
+- CI PR : À lancer
 - Fusion finale validée par utilisateur : Non
 
 ## Priorité active (roadmap)
 - Règle : Must > Should > Could
-- Lot en cours : Phase 1 / Bloc 5
-- Feature en cours : Onglet Détails + historique 5 passes
+- Lot en cours : Phase 1 / Finalisation
+- Feature en cours : Validation finale V1 + check iPhone PWA
 
 ## Dernière décision Orchestrator
-- Décision : PASS-05 exécutée, PR ouverte
-- Motif : Implémentation onglet Détails terminée
-- Action suivante : Attendre CI verte, merge auto PR #5, lancer Passe 06
+- Décision : Pause contrôlée avant clôture
+- Motif : Critère DoD #1 (installation PWA sur iPhone 13) non vérifiable automatiquement
+- Action suivante : Demander validation utilisateur sur iPhone puis clôturer
