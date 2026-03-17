@@ -30,7 +30,7 @@
 - Dernier commit (SHA court) : a1d7904
 - PR de la passe en cours : Oui
 - Lien PR (passe) : https://github.com/PangolinBob/Lia_Pulse/pull/2
-- CI PR : En cours
+- CI PR : Verte
 - Fusion finale validée par utilisateur : Non
 
 ## Priorité active (roadmap)
