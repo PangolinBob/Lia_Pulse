@@ -45,3 +45,12 @@ Next step : Passe 04 (bannière blocage persistante + fiche décision).
 Commit SHA : 8bcd439 (implémentation) / 53d9541 (merge main)
 Message commit : PASS-03: Refresh manuel + auto-refresh 2 min
 Lien PR : https://github.com/PangolinBob/Lia_Pulse/pull/3
+
+## Passe 04 — 2026-03-17 16:24
+Objectif : Livrer Bloc 4 (bannière blocage persistante + fiche décision).
+Résultat : Implémenté avec succès (bannière persistante, bouton “Voir le blocage”, fiche Option A/B pour-contre-préconisation). Lint/test/build locaux OK. PR ouverte.
+Blocage : Aucun blocage produit. CI GitHub en cours sur PR #4.
+Next step : CI verte -> merge auto -> lancer Passe 05 (onglet Détails + historique 5 passes).
+Commit SHA : dc5f139
+Message commit : PASS-04: Bannière blocage persistante + fiche décision
+Lien PR : https://github.com/PangolinBob/Lia_Pulse/pull/4

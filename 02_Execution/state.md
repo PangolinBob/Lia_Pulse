@@ -4,7 +4,7 @@
 - Projet : Lia_Pulse
 - Statut : RUNNING
 - Passe en cours : 4/8
-- Dernière mise à jour : 2026-03-17 16:16
+- Dernière mise à jour : 2026-03-17 16:24
 
 ## Statuts autorisés (verrouillés)
 - READY : prêt à lancer
@@ -27,10 +27,10 @@
 - Visibilité repo : Privé (par défaut)
 - Repo URL : https://github.com/PangolinBob/Lia_Pulse.git
 - Branche active : work/Lia_Pulse
-- Dernier commit (SHA court) : 53d9541
-- PR de la passe en cours : Non
-- Lien PR (passe) : N/A
-- CI PR : NA
+- Dernier commit (SHA court) : dc5f139
+- PR de la passe en cours : Oui
+- Lien PR (passe) : https://github.com/PangolinBob/Lia_Pulse/pull/4
+- CI PR : En cours
 - Fusion finale validée par utilisateur : Non
 
 ## Priorité active (roadmap)
@@ -39,6 +39,6 @@
 - Feature en cours : Bannière blocage persistante + fiche décision
 
 ## Dernière décision Orchestrator
-- Décision : PASS-03 mergée automatiquement, lancement Passe 04
-- Motif : CI PR #3 verte + règle merge auto
-- Action suivante : Implémenter blocage persistant + fiche décision, ouvrir PR PASS-04
+- Décision : PASS-04 exécutée, PR ouverte
+- Motif : Implémentation blocage persistant + fiche décision terminée
+- Action suivante : Attendre CI verte, merge auto PR #4, lancer Passe 05
