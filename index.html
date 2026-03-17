@@ -25,7 +25,11 @@
       .bar { margin-top: 8px; height: 8px; border-radius: 999px; background: #1e293b; overflow: hidden; }
       .bar > i { display: block; height: 100%; background: #22c55e; width: 0; }
       ul { margin: 8px 0 0 18px; padding: 0; }
-    </style>
+    .banner{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px;border-radius:10px;border:1px solid #7f1d1d;background:#3f0d0d;color:#fecaca;margin:8px 0;}
+      .decision{border:1px solid #334155;border-radius:12px;padding:10px;margin-top:10px;background:#0b1324;}
+      .decision h3{margin:0 0 8px;font-size:1rem;color:#fca5a5;}
+      .decision h4{margin:8px 0 4px;color:#93c5fd;font-size:.9rem;}
+      </style>
   </head>
   <body>
     <main class="wrap">
@@ -46,6 +50,10 @@
 
       <section id="dashboard" class="card" hidden>
         <h1>Vue Rapide</h1>
+        <section id="block-banner" class="banner" hidden>
+          <strong id="block-banner-text">Blocage dur détecté</strong>
+          <button id="block-open" type="button">Voir le blocage</button>
+        </section>
         <button id="refresh-btn" type="button" style="margin:8px 0 4px">Refresh</button>
         <p id="freshness" class="small">Dernière mise à jour: —</p>
         <div class="grid">
@@ -69,6 +77,19 @@
         </div>
         <h2 style="margin-top:12px;color:#93c5fd;font-size:.9rem">Format “on en est où ?”</h2>
         <ul id="short-status"></ul>
+        <section id="block-card" class="decision" hidden>
+          <h3 id="block-title">Blocage</h3>
+          <p id="block-summary" class="small"></p>
+          <h4 id="optA-label">Option A</h4>
+          <p id="optA-pros" class="small"></p>
+          <p id="optA-cons" class="small"></p>
+          <p id="optA-rec" class="small"></p>
+          <h4 id="optB-label">Option B</h4>
+          <p id="optB-pros" class="small"></p>
+          <p id="optB-cons" class="small"></p>
+          <p id="optB-rec" class="small"></p>
+          <button id="block-close" type="button">Fermer</button>
+        </section>
       </section>
     </main>
     <script type="module" src="src/main.js"></script>
