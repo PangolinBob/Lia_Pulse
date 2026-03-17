@@ -27,3 +27,21 @@ Next step : Vérifier CI, demander Go/No-Go immédiat, merger PASS-02, puis dém
 Commit SHA : a1d7904
 Message commit : PASS-02: Vue Rapide 4 blocs + avancement visuel
 Lien PR : https://github.com/PangolinBob/Lia_Pulse/pull/2
+
+## Jalon — 2026-03-17 15:15
+Objectif : Appliquer la règle merge auto et reprendre sans attente silencieuse.
+Résultat : PR #2 mergée automatiquement (CI verte), process relancé sur Passe 03.
+Blocage : Aucun.
+Next step : Implémenter Bloc 3 (refresh manuel + auto-refresh 2 min).
+Commit SHA : 3285e70
+Message commit : Merge PR PASS-02 dans main
+Lien PR : https://github.com/PangolinBob/Lia_Pulse/pull/2
+
+## Passe 03 — 2026-03-17 16:04
+Objectif : Livrer Bloc 3 (refresh manuel + auto-refresh 2 min).
+Résultat : Implémenté avec succès (bouton refresh, freshness stamp, timer 120s). Lint/test/build locaux OK. PR ouverte puis mergée (CI verte).
+Blocage : Aucun.
+Next step : Passe 04 (bannière blocage persistante + fiche décision).
+Commit SHA : 8bcd439 (implémentation) / 53d9541 (merge main)
+Message commit : PASS-03: Refresh manuel + auto-refresh 2 min
+Lien PR : https://github.com/PangolinBob/Lia_Pulse/pull/3
