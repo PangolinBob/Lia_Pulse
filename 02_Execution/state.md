@@ -3,8 +3,8 @@
 ## État courant
 - Projet : Lia_Pulse
 - Statut : RUNNING
-- Passe en cours : 5/8
-- Dernière mise à jour : 2026-03-17 16:27
+- Passe en cours : 6/8
+- Dernière mise à jour : 2026-03-17 16:32
 
 ## Statuts autorisés (verrouillés)
 - READY : prêt à lancer
@@ -27,18 +27,18 @@
 - Visibilité repo : Privé (par défaut)
 - Repo URL : https://github.com/PangolinBob/Lia_Pulse.git
 - Branche active : work/Lia_Pulse
-- Dernier commit (SHA court) : 8327ac0
-- PR de la passe en cours : Oui
-- Lien PR (passe) : https://github.com/PangolinBob/Lia_Pulse/pull/5
-- CI PR : En cours
+- Dernier commit (SHA court) : 8c10364
+- PR de la passe en cours : Non
+- Lien PR (passe) : N/A
+- CI PR : NA
 - Fusion finale validée par utilisateur : Non
 
 ## Priorité active (roadmap)
 - Règle : Must > Should > Could
-- Lot en cours : Phase 1 / Bloc 5
-- Feature en cours : Onglet Détails + historique 5 passes
+- Lot en cours : Phase 1 / Finalisation
+- Feature en cours : Validation finale V1
 
 ## Dernière décision Orchestrator
-- Décision : PASS-05 exécutée, PR ouverte
-- Motif : Implémentation onglet Détails terminée
-- Action suivante : Attendre CI verte, merge auto PR #5, lancer Passe 06
+- Décision : PASS-05 et PASS-06 mergées automatiquement
+- Motif : CI verte + règle merge auto
+- Action suivante : Vérifier scénarios critiques finaux et clôturer le cycle
