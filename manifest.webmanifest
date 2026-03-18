@@ -1,0 +1,9 @@
+{
+  "name": "Lia Pulse",
+  "short_name": "LiaPulse",
+  "start_url": "/Lia_Pulse/?api=https%3A%2F%2Fmacmini.tail43de1e.ts.net%3A8787",
+  "display": "standalone",
+  "background_color": "#0b1220",
+  "theme_color": "#0f172a",
+  "icons": []
+}

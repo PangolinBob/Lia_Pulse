@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0f172a" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <title>Lia Pulse</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="dropin/iphone.css" />
+</head>
+<body>
+<!-- iPhone frame -->
+    <div class="iphone-frame">
+      <div class="iphone-notch"></div>
+      <div class="iphone-screen">
+        <div class="iphone-app-header">
+          <h3>Lia Pulse</h3>
+          <div class="project-name">Mon App PWA</div>
+        </div>
+
+        <!-- Blocking banner -->
+        <div class="block-banner" id="iphoneBanner" onclick="switchTab('blocage',document.querySelector('.iphone-tab:nth-child(3)'))" style="margin:8px 12px 0;display:none">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--rose)" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>
+          <p>Blocage d&eacute;tect&eacute;</p>
+          <span class="see-btn">Voir</span>
+        </div>
+
+        <div class="iphone-tabs">
+          <div class="iphone-tab active" onclick="switchTab('quick',this)">Vue Rapide</div>
+          <div class="iphone-tab" onclick="switchTab('details',this)">D&eacute;tails</div>
+          <div class="iphone-tab" onclick="switchTab('blocage',this)" style="color:var(--rose)">
+            <span style="display:inline-flex;align-items:center;gap:4px">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>
+              Blocage
+            </span>
+          </div>
+        </div>
+        <div class="iphone-content" id="iphoneContent">
+          <!-- Vue Rapide -->
+          <div id="tabQuick">
+            <div class="quick-block">
+              <h5>Avancement</h5>
+              <div class="qval"><span id="iphoneProgress">62</span>% <small>du d&eacute;veloppement</small></div>
+              <div class="quick-progress"><div class="bar" id="iphoneBar" style="width:62%;background:linear-gradient(90deg,var(--accent),var(--cyan))"></div></div>
+            </div>
+            <div class="quick-block">
+              <h5>&Eacute;tat</h5>
+              <div class="qval" style="font-size:0.85rem" id="iphoneState">
+                <span class="tag tag-green" style="font-size:0.75rem">EN COURS</span>
+                <span style="margin-left:8px;color:var(--gray300)">Passe 5/8</span>
+              </div>
+            </div>
+            <div class="quick-block">
+              <h5>Prochaine &eacute;tape</h5>
+              <div class="qval" style="font-size:0.82rem;color:var(--gray200)" id="iphoneNext">Int&eacute;gration de l'API de paiement</div>
+            </div>
+            <div class="quick-block">
+              <h5>Alertes</h5>
+              <div class="qval" style="font-size:0.82rem;color:var(--emerald)" id="iphoneAlerts">Pas de probl&egrave;me que l'on ne puisse g&eacute;rer.</div>
+            </div>
+          </div>
+          <!-- D&eacute;tails -->
+          <div id="tabDetails" style="display:none">
+            <div id="passListContainer"></div>
+          </div>
+          <!-- Blocage -->
+          <div id="tabBlocage" style="display:none">
+            <div id="blocageContent"></div>
+          </div>
+          <!-- R&eacute;glages -->
+          <div id="tabReglages" style="display:none">
+            <div style="text-align:center;padding:8px 0 12px">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--gray400)" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+              <div style="font-size:0.8rem;font-weight:600;color:var(--white);margin-top:4px">R&eacute;glages</div>
+            </div>
+            <!-- Th&egrave;me -->
+            <div class="quick-block" style="display:flex;align-items:center;justify-content:space-between;cursor:pointer" onclick="toggleIphoneTheme()">
+              <div style="display:flex;align-items:center;gap:8px">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gray300)" stroke-width="2" id="iphoneThemeIcon"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+                <div>
+                  <div style="font-size:0.75rem;color:var(--white);font-weight:600">Th&egrave;me</div>
+                  <div style="font-size:0.62rem;color:var(--gray400)" id="iphoneThemeLabel">Sombre</div>
+                </div>
+              </div>
+              <div style="width:36px;height:20px;border-radius:10px;background:var(--accent);position:relative;transition:background 0.3s" id="iphoneThemeToggle">
+                <div style="width:16px;height:16px;border-radius:50%;background:var(--white);position:absolute;top:2px;right:2px;transition:all 0.3s" id="iphoneThemeKnob"></div>
+              </div>
+            </div>
+            <!-- PIN -->
+            <div class="quick-block" style="display:flex;align-items:center;justify-content:space-between">
+              <div style="display:flex;align-items:center;gap:8px">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gray300)" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+                <div>
+                  <div style="font-size:0.75rem;color:var(--white);font-weight:600">Code PIN</div>
+                  <div style="font-size:0.62rem;color:var(--gray400)">Prot&eacute;ger l'acc&egrave;s</div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:center;gap:4px">
+                <span style="font-family:var(--font-mono);font-size:0.7rem;color:var(--gray400);letter-spacing:3px" id="iphonePinDisplay">&bull;&bull;&bull;&bull;</span>
+                <button style="padding:2px 6px;border-radius:4px;font-size:0.6rem;color:var(--accent2);border:1px solid var(--glass-border)" onclick="toggleIphonePin()" id="iphonePinBtn">Afficher</button>
+              </div>
+            </div>
+            <!-- Auto-refresh -->
+            <div class="quick-block" style="display:flex;align-items:center;justify-content:space-between;cursor:pointer" onclick="toggleIphoneRefresh()">
+              <div style="display:flex;align-items:center;gap:8px">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gray300)" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>
+                <div>
+                  <div style="font-size:0.75rem;color:var(--white);font-weight:600">Auto-refresh</div>
+                  <div style="font-size:0.62rem;color:var(--gray400)" id="iphoneRefreshLabel">Toutes les 2 min</div>
+                </div>
+              </div>
+              <div style="width:36px;height:20px;border-radius:10px;background:var(--accent);position:relative;transition:background 0.3s" id="iphoneRefreshToggle">
+                <div style="width:16px;height:16px;border-radius:50%;background:var(--white);position:absolute;top:2px;right:2px;transition:all 0.3s" id="iphoneRefreshKnob"></div>
+              </div>
+            </div>
+            <!-- Notifications -->
+            <div class="quick-block" style="display:flex;align-items:center;justify-content:space-between">
+              <div style="display:flex;align-items:center;gap:8px">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gray300)" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+                <div>
+                  <div style="font-size:0.75rem;color:var(--white);font-weight:600">Notifications</div>
+                  <div style="font-size:0.62rem;color:var(--gray400)">Via Telegram</div>
+                </div>
+              </div>
+              <span class="tag tag-green" style="font-size:0.6rem;padding:2px 8px">Actif</span>
+            </div>
+            <!-- Version -->
+            <div style="text-align:center;padding:16px 0 4px">
+              <div style="font-size:0.6rem;color:var(--gray500)">Lia Pulse v1.0.0</div>
+              <div style="font-size:0.55rem;color:var(--gray600);margin-top:2px">Lecture seule &mdash; Aucune action sensible</div>
+            </div>
+          </div>
+        </div>
+        <div class="iphone-bottom-bar">
+          <button class="active" onclick="switchTab('quick',document.querySelector('.iphone-tab:first-child'));activateBottomBtn(this)" aria-label="Accueil">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+            Accueil
+          </button>
+          <button onclick="refreshIphone();activateBottomBtn(this)" aria-label="Rafra&icirc;chir">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>
+            Refresh
+          </button>
+          <button onclick="switchToReglages(this)" aria-label="R&eacute;glages">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+            R&eacute;glages
+          </button>
+        </div>
+      </div>
+</div>
+<div class="toast-container" id="toastContainer"></div>
+<script src="dropin/iphone.js"></script>
+</body>
+</html>
