@@ -280,8 +280,8 @@ async function validateBlocage() {
       token: sessionToken,
       body: { decision: blocageSelected },
     });
-    blocageResolved = true;
-    document.getElementById('iphoneBanner').style.display = 'none';
+    blocageResolved = false;
+    await refreshIphone(true);
     renderBlocage();
     showToast(`Option ${blocageSelected} validée`);
   } catch (e) {
