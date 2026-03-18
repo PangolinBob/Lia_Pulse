@@ -219,6 +219,7 @@ body::after{
 }
 .blocage-validate.visible{opacity:1;transform:translateY(0);pointer-events:auto}
 .blocage-validate:hover{box-shadow:0 4px 12px rgba(16,185,129,0.3)}
+.blocage-validate:disabled{opacity:.7;cursor:wait;filter:saturate(.8)}
 .blocage-resolved{
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   gap:12px;padding:40px 16px;text-align:center;
@@ -297,3 +298,30 @@ body::after{
   font-size:16px;
 }
 #liaPinError{min-height:18px;margin-top:8px;font-size:.72rem;color:var(--rose)}
+
+/* Blocage loading overlay */
+#blocageLoading{
+  position:fixed;inset:0;z-index:3500;
+  background:rgba(3,3,3,.5);
+  backdrop-filter: blur(2px);
+  display:flex;align-items:center;justify-content:center;
+  padding:16px;
+}
+.blocage-loading-card{
+  min-width:190px;
+  border-radius:12px;
+  border:1px solid var(--glass-border);
+  background:var(--bg2);
+  box-shadow:0 10px 30px rgba(0,0,0,.35);
+  padding:16px 14px;
+  display:flex;flex-direction:column;align-items:center;gap:10px;
+}
+.blocage-loading-spinner{
+  width:28px;height:28px;border-radius:50%;
+  border:3px solid rgba(255,255,255,.2);
+  border-top-color:var(--accent2);
+  animation:spin .8s linear infinite;
+}
+.blocage-loading-text{
+  font-size:.74rem;color:var(--gray200);font-weight:600;
+}

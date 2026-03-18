@@ -151,19 +151,29 @@ function renderPasses() {
   const container = document.getElementById('passListContainer');
   const history = Array.isArray(lastStatus?.history) ? lastStatus.history : [];
   if (!history.length) {
-    container.innerHTML = `<div class="quick-block"><div style="font-size:0.72rem;color:var(--gray300)">Pas d’historique détaillé disponible pour l’instant.</div></div>`;
+    container.innerHTML = `<div class="quick-block"><div style="font-size:0.72rem;color:var(--gray300)">Pas d’historique bloc disponible pour l’instant.</div></div>`;
     return;
   }
 
-  container.innerHTML = history.slice(0, 5).map((p, i) => {
-    const num = p.pass || `PASS-${String(i + 1).padStart(2, '0')}`;
+  // Affichage du plus récent au plus ancien.
+  const orderedHistory = [...history].reverse();
+
+  container.innerHTML = orderedHistory.map((p, i) => {
+    const bloc = p.bloc || p.pass || `Bloc ${i + 1}`;
     const status = p.status || 'N/A';
     const note = p.note || '';
+    const duration = p.duration || '—';
+    const commit = p.commit || '—';
+    const pr = p.pr || '—';
+    const ci = p.ci || 'NA';
+    const bugsBlocking = p.bugsBlocking ?? p.bugs_bloquants ?? '0';
+    const bugsMinor = p.bugsMinor ?? p.bugs_mineurs ?? '0';
+
     return `
       <div class="pass-item" id="pass-${i}">
         <div class="pass-trigger" onclick="togglePass(${i})">
           <div class="pass-head">
-            <span class="pass-num">${num}</span>
+            <span class="pass-num">${bloc}</span>
             <span style="display:flex;align-items:center;gap:6px">
               <span class="pass-time">${status}</span>
               <svg class="pass-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
@@ -173,7 +183,14 @@ function renderPasses() {
         </div>
         <div class="pass-drawer">
           <div class="pass-drawer-inner">
+            <div class="pass-detail-row"><span class="pdl">Bloc</span><span class="pdv">${bloc}</span></div>
             <div class="pass-detail-row"><span class="pdl">Statut</span><span class="pdv">${status}</span></div>
+            <div class="pass-detail-row"><span class="pdl">Durée</span><span class="pdv">${duration}</span></div>
+            <div class="pass-detail-row"><span class="pdl">Commit</span><span class="pdv">${commit}</span></div>
+            <div class="pass-detail-row"><span class="pdl">PR</span><span class="pdv">${pr}</span></div>
+            <div class="pass-detail-row"><span class="pdl">CI</span><span class="pdv">${ci}</span></div>
+            <div class="pass-detail-row"><span class="pdl">Bugs bloquants</span><span class="pdv">${bugsBlocking}</span></div>
+            <div class="pass-detail-row"><span class="pdl">Bugs mineurs</span><span class="pdv">${bugsMinor}</span></div>
             <div class="pass-detail-row stacked"><span class="pdl">Note</span><span class="pdv">${note || '—'}</span></div>
           </div>
         </div>
@@ -255,6 +272,15 @@ function selectBlocageOption(el, opt) {
 
 async function validateBlocage() {
   if (!blocageSelected || !sessionToken) return;
+  const btn = document.getElementById('blocageValidateBtn');
+  const waiting = document.getElementById('blocageWaiting');
+  if (btn) btn.disabled = true;
+  if (waiting) {
+    waiting.innerHTML = `
+      <span style="width:5px;height:5px;border-radius:50%;background:var(--cyan);animation:pulse-dot 1s infinite"></span>
+      Validation en cours...`;
+  }
+  setBlocageLoading(true);
   try {
     await apiCall('/api/blocking/decision', {
       method: 'POST',
@@ -267,6 +293,9 @@ async function validateBlocage() {
     showToast(`Option ${blocageSelected} validée`);
   } catch (e) {
     showToast(e?.data?.message || 'Échec envoi décision');
+  } finally {
+    setBlocageLoading(false);
+    if (btn) btn.disabled = false;
   }
 }
 
@@ -347,6 +376,24 @@ function toggleIphoneRefresh() {
     knob.style.left = '2px';
     label.textContent = 'Désactivé';
   }
+}
+
+function setBlocageLoading(isLoading) {
+  const existing = document.getElementById('blocageLoading');
+  if (isLoading) {
+    if (existing) return;
+    const overlay = document.createElement('div');
+    overlay.id = 'blocageLoading';
+    overlay.innerHTML = `
+      <div class="blocage-loading-card">
+        <div class="blocage-loading-spinner" aria-hidden="true"></div>
+        <div class="blocage-loading-text">Traitement en cours...</div>
+      </div>
+    `;
+    document.body.appendChild(overlay);
+    return;
+  }
+  if (existing) existing.remove();
 }
 
 function showToast(message) {
