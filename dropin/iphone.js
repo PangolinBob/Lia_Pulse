@@ -163,9 +163,6 @@ function renderPasses() {
     const status = p.status || 'N/A';
     const note = p.note || '';
     const duration = p.duration || '—';
-    const commit = p.commit || '—';
-    const pr = p.pr || '—';
-    const ci = p.ci || 'NA';
     const bugsBlocking = p.bugsBlocking ?? p.bugs_bloquants ?? '0';
     const bugsMinor = p.bugsMinor ?? p.bugs_mineurs ?? '0';
 
@@ -186,12 +183,8 @@ function renderPasses() {
             <div class="pass-detail-row"><span class="pdl">Bloc</span><span class="pdv">${bloc}</span></div>
             <div class="pass-detail-row"><span class="pdl">Statut</span><span class="pdv">${status}</span></div>
             <div class="pass-detail-row"><span class="pdl">Durée</span><span class="pdv">${duration}</span></div>
-            <div class="pass-detail-row"><span class="pdl">Commit</span><span class="pdv">${commit}</span></div>
-            <div class="pass-detail-row"><span class="pdl">PR</span><span class="pdv">${pr}</span></div>
-            <div class="pass-detail-row"><span class="pdl">CI</span><span class="pdv">${ci}</span></div>
             <div class="pass-detail-row"><span class="pdl">Bugs bloquants</span><span class="pdv">${bugsBlocking}</span></div>
             <div class="pass-detail-row"><span class="pdl">Bugs mineurs</span><span class="pdv">${bugsMinor}</span></div>
-            <div class="pass-detail-row stacked"><span class="pdl">Note</span><span class="pdv">${note || '—'}</span></div>
           </div>
         </div>
       </div>
@@ -309,7 +302,15 @@ async function refreshIphone(initial = false) {
     document.getElementById('iphoneProgress').textContent = String(pct);
     document.getElementById('iphoneBar').style.width = `${Math.max(0, Math.min(100, pct))}%`;
     document.getElementById('iphoneNext').textContent = s.nextStep || '—';
-    document.getElementById('iphoneAlerts').textContent = s.alerts || '—';
+    const alertsEl = document.getElementById('iphoneAlerts');
+    const alertText = s.alerts || '—';
+    if (String(alertText).trim().toLowerCase() === 'blocage') {
+      alertsEl.innerHTML = `<span style="color:var(--rose);font-weight:700">Blocage</span>`;
+    } else {
+      alertsEl.textContent = alertText;
+      alertsEl.style.color = 'var(--emerald)';
+      alertsEl.style.fontWeight = '500';
+    }
 
     const state = s.globalState || 'Inconnu';
     document.getElementById('iphoneState').innerHTML = `<span class="tag tag-green" style="font-size:0.75rem">${state}</span>`;
