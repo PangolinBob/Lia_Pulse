@@ -147,6 +147,31 @@ function activateBottomBtn(btn) {
   btn.classList.add('active');
 }
 
+function statusTone(status) {
+  const s = String(status || '').trim().toUpperCase();
+  if (s === 'RUNNING') return { color: 'var(--amber)', weight: '700' };
+  if (s === 'DONE') return { color: 'var(--emerald)', weight: '700' };
+  return { color: 'var(--gray500)', weight: '500' };
+}
+
+function parseDurationToMinutes(raw) {
+  const text = String(raw || '').toLowerCase().trim();
+  if (!text || text === '—') return 0;
+  const h = Number((text.match(/(\d+)\s*h/) || [])[1] || 0);
+  const m = Number((text.match(/(\d+)\s*min/) || [])[1] || 0);
+  if (h || m) return (h * 60) + m;
+  const n = Number((text.match(/(\d+)/) || [])[1] || 0);
+  return Number.isFinite(n) ? n : 0;
+}
+
+function formatMinutes(totalMin) {
+  const mins = Math.max(0, Number(totalMin || 0));
+  const h = Math.floor(mins / 60);
+  const m = mins % 60;
+  if (h > 0) return `${h}h ${m}min`;
+  return `${m} min`;
+}
+
 function renderPasses() {
   const container = document.getElementById('passListContainer');
   const history = Array.isArray(lastStatus?.history) ? lastStatus.history : [];
@@ -165,6 +190,7 @@ function renderPasses() {
     const duration = p.duration || '—';
     const bugsBlocking = p.bugsBlocking ?? p.bugs_bloquants ?? '0';
     const bugsMinor = p.bugsMinor ?? p.bugs_mineurs ?? '0';
+    const tone = statusTone(status);
 
     return `
       <div class="pass-item" id="pass-${i}">
@@ -172,7 +198,7 @@ function renderPasses() {
           <div class="pass-head">
             <span class="pass-num">${bloc}</span>
             <span style="display:flex;align-items:center;gap:6px">
-              <span class="pass-time">${status}</span>
+              <span class="pass-time" style="color:${tone.color};font-weight:${tone.weight}">${status}</span>
               <svg class="pass-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
             </span>
           </div>
@@ -181,7 +207,7 @@ function renderPasses() {
         <div class="pass-drawer">
           <div class="pass-drawer-inner">
             <div class="pass-detail-row"><span class="pdl">Bloc</span><span class="pdv">${bloc}</span></div>
-            <div class="pass-detail-row"><span class="pdl">Statut</span><span class="pdv">${status}</span></div>
+            <div class="pass-detail-row"><span class="pdl">Statut</span><span class="pdv" style="color:${tone.color};font-weight:${tone.weight}">${status}</span></div>
             <div class="pass-detail-row"><span class="pdl">Durée</span><span class="pdv">${duration}</span></div>
             <div class="pass-detail-row"><span class="pdl">Bugs bloquants</span><span class="pdv">${bugsBlocking}</span></div>
             <div class="pass-detail-row"><span class="pdl">Bugs mineurs</span><span class="pdv">${bugsMinor}</span></div>
@@ -301,6 +327,12 @@ async function refreshIphone(initial = false) {
     const pct = Number(s.progressPct || 0);
     document.getElementById('iphoneProgress').textContent = String(pct);
     document.getElementById('iphoneBar').style.width = `${Math.max(0, Math.min(100, pct))}%`;
+
+    const totalElapsedMin = (Array.isArray(s.history) ? s.history : [])
+      .reduce((acc, item) => acc + parseDurationToMinutes(item?.duration), 0);
+    const elapsedEl = document.getElementById('iphoneElapsed');
+    if (elapsedEl) elapsedEl.textContent = formatMinutes(totalElapsedMin);
+
     document.getElementById('iphoneNext').textContent = s.nextStep || '—';
     const alertsEl = document.getElementById('iphoneAlerts');
     const alertText = s.alerts || '—';
