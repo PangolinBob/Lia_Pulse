@@ -168,7 +168,7 @@ function formatMinutes(totalMin) {
   const mins = Math.max(0, Number(totalMin || 0));
   const h = Math.floor(mins / 60);
   const m = mins % 60;
-  if (h > 0) return `${h}h ${m}min`;
+  if (h > 0) return `${h}h ${m} min`;
   return `${m} min`;
 }
 
@@ -330,8 +330,10 @@ async function refreshIphone(initial = false) {
 
     const totalElapsedMin = (Array.isArray(s.history) ? s.history : [])
       .reduce((acc, item) => acc + parseDurationToMinutes(item?.duration), 0);
-    const elapsedEl = document.getElementById('iphoneElapsed');
-    if (elapsedEl) elapsedEl.textContent = formatMinutes(totalElapsedMin);
+    const weeklyConsoPctRaw = s.weeklyOauthConsumedPct ?? s.weeklyConsumedPct ?? s.weeklyUsageConsumedPct ?? 0;
+    const weeklyConsoPct = Number.isFinite(Number(weeklyConsoPctRaw)) ? Math.max(0, Math.round(Number(weeklyConsoPctRaw))) : 0;
+    const timeConsoEl = document.getElementById('iphoneTimeConso');
+    if (timeConsoEl) timeConsoEl.textContent = `${formatMinutes(totalElapsedMin)} ｜ ${weeklyConsoPct}% limite hebdo`;
 
     document.getElementById('iphoneNext').textContent = s.nextStep || '—';
     const alertsEl = document.getElementById('iphoneAlerts');
